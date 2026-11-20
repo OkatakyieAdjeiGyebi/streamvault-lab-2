@@ -1,0 +1,1141 @@
+
+===========================================================================
+1. LOADING DATASETS
+===========================================================================
+Movies loaded from: data\processed\movies.csv
+Cast loaded from: data\processed\cast.csv
+Crew loaded from: data\processed\crew.csv
+Extraction Log loaded from: data\processed\extraction_log.csv
+
+All four datasets loaded successfully.
+
+===========================================================================
+2. DATASET DIMENSIONS AND COLUMNS
+===========================================================================
+
+Movies
+----------------------------------------
+Rows: 119
+Columns: 17
+Column names: ['source_row', 'input_tmdb_id', 'api_movie_id', 'title', 'original_title', 'release_date', 'budget', 'revenue', 'runtime', 'vote_average', 'vote_count', 'popularity', 'original_language', 'status', 'genres', 'collection_id', 'collection_name']
+
+Cast
+----------------------------------------
+Rows: 8,407
+Columns: 7
+Column names: ['source_row', 'input_tmdb_id', 'movie_id', 'actor_id', 'actor_name', 'character', 'cast_order']
+
+Crew
+----------------------------------------
+Rows: 25,957
+Columns: 7
+Column names: ['source_row', 'input_tmdb_id', 'movie_id', 'person_id', 'person_name', 'department', 'job']
+
+Extraction Log
+----------------------------------------
+Rows: 127
+Columns: 8
+Column names: ['source_row', 'input_tmdb_id', 'details_http_status', 'credits_http_status', 'details_retrieved', 'credits_retrieved', 'details_error', 'credits_error']
+
+===========================================================================
+3. DATA TYPES AND SAMPLE RECORDS
+===========================================================================
+
+Movies - Data types
+source_row             int64
+input_tmdb_id            str
+api_movie_id           int64
+title                    str
+original_title           str
+release_date             str
+budget                 int64
+revenue                int64
+runtime                int64
+vote_average         float64
+vote_count             int64
+popularity           float64
+original_language        str
+status                   str
+genres                   str
+collection_id        float64
+collection_name          str
+
+Movies - First 5 records
+ source_row input_tmdb_id  api_movie_id                      title             original_title release_date    budget    revenue  runtime  vote_average  vote_count  popularity original_language   status                             genres  collection_id               collection_name
+          1           155           155            The Dark Knight            The Dark Knight   2008-07-16 185000000 1008480529      152         8.500       37425     52.5171                en Released            Action, Thriller, Crime          263.0    The Dark Knight Collection
+          2           165           165 Back to the Future Part II Back to the Future Part II   1989-11-22  40000000  332861197      108         7.784       14537      9.8404                en Released Adventure, Comedy, Science Fiction          264.0 Back to the Future Collection
+          3           242           242     The Godfather Part III     The Godfather Part III   1990-12-25  54000000  136766062      162         7.413        7204     13.6773                en Released             Crime, Drama, Thriller          230.0      The Godfather Collection
+          4         49026         49026      The Dark Knight Rises      The Dark Knight Rises   2012-07-17 250000000 1081041287      165         7.801       25343     20.6789                en Released            Action, Crime, Thriller          263.0    The Dark Knight Collection
+          5          8077          8077                     Alien³                     Alien³   1992-05-22  50000000  159773545      114         6.391        6727      7.9407                en Released    Science Fiction, Action, Horror         8091.0              Alien Collection
+
+Cast - Data types
+source_row        int64
+input_tmdb_id       str
+movie_id         string
+actor_id         string
+actor_name          str
+character           str
+cast_order        int64
+
+Cast - First 5 records
+ source_row input_tmdb_id movie_id actor_id        actor_name   character  cast_order
+          1           155      155     3894    Christian Bale Bruce Wayne           0
+          1           155      155     1810      Heath Ledger       Joker           1
+          1           155      155     6383     Aaron Eckhart Harvey Dent           2
+          1           155      155     3895     Michael Caine      Alfred           3
+          1           155      155     1579 Maggie Gyllenhaal      Rachel           4
+
+Crew - Data types
+source_row        int64
+input_tmdb_id       str
+movie_id         string
+person_id        string
+person_name         str
+department          str
+job                 str
+
+Crew - First 5 records
+ source_row input_tmdb_id movie_id person_id       person_name department                job
+          1           155      155      3904         Lee Smith    Editing             Editor
+          1           155      155      3893    David S. Goyer    Writing              Story
+          1           155      155       561    John Papsidera Production            Casting
+          1           155      155     10949     Michael Uslan Production Executive Producer
+          1           155      155     10951 Benjamin Melniker Production Executive Producer
+
+Extraction Log - Data types
+source_row               int64
+input_tmdb_id              str
+details_http_status    float64
+credits_http_status    float64
+details_retrieved         bool
+credits_retrieved         bool
+details_error              str
+credits_error              str
+
+Extraction Log - First 5 records
+ source_row input_tmdb_id  details_http_status  credits_http_status  details_retrieved  credits_retrieved details_error credits_error
+          1           155                200.0                200.0               True               True           NaN           NaN
+          2           165                200.0                200.0               True               True           NaN           NaN
+          3           242                200.0                200.0               True               True           NaN           NaN
+          4         49026                200.0                200.0               True               True           NaN           NaN
+          5          8077                200.0                200.0               True               True           NaN           NaN
+
+===========================================================================
+4. UNIQUE VALUES AND FREQUENCIES
+===========================================================================
+
+Movies
+
+Column: source_row
+Unique values including missing: 119
+Top 15 most frequent values:
+source_row
+1     1
+2     1
+3     1
+4     1
+5     1
+6     1
+7     1
+8     1
+9     1
+10    1
+11    1
+12    1
+13    1
+14    1
+15    1
+Sample distinct non-missing values:
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+Column: input_tmdb_id
+Unique values including missing: 113
+Top 15 most frequent values:
+input_tmdb_id
+155      2
+680      2
+278      2
+603      2
+1891     2
+550      2
+165      1
+242      1
+49026    1
+8077     1
+331      1
+58       1
+10138    1
+673      1
+955      1
+Sample distinct non-missing values:
+['155', '165', '242', '49026', '8077', '331', '680', '58', '10138', '673']
+
+Column: api_movie_id
+Unique values including missing: 112
+Top 15 most frequent values:
+api_movie_id
+155      3
+680      2
+278      2
+603      2
+1891     2
+550      2
+165      1
+242      1
+49026    1
+8077     1
+331      1
+58       1
+10138    1
+673      1
+955      1
+Sample distinct non-missing values:
+[155, 165, 242, 49026, 8077, 331, 680, 58, 10138, 673]
+
+Column: title
+Unique values including missing: 112
+Top 15 most frequent values:
+title
+The Dark Knight                               3
+Pulp Fiction                                  2
+The Shawshank Redemption                      2
+The Matrix                                    2
+The Empire Strikes Back                       2
+Fight Club                                    2
+Back to the Future Part II                    1
+The Godfather Part III                        1
+The Dark Knight Rises                         1
+Alien³                                        1
+Jurassic Park III                             1
+Pirates of the Caribbean: Dead Man's Chest    1
+Iron Man 2                                    1
+Harry Potter and the Prisoner of Azkaban      1
+Mission: Impossible II                        1
+Sample distinct non-missing values:
+['The Dark Knight', 'Back to the Future Part II', 'The Godfather Part III', 'The Dark Knight Rises', 'Alien³', 'Jurassic Park III', 'Pulp Fiction', "Pirates of the Caribbean: Dead Man's Chest", 'Iron Man 2', 'Harry Potter and the Prisoner of Azkaban']
+
+Column: original_title
+Unique values including missing: 112
+Top 15 most frequent values:
+original_title
+The Dark Knight                               3
+Pulp Fiction                                  2
+The Shawshank Redemption                      2
+The Matrix                                    2
+The Empire Strikes Back                       2
+Fight Club                                    2
+Back to the Future Part II                    1
+The Godfather Part III                        1
+The Dark Knight Rises                         1
+Alien³                                        1
+Jurassic Park III                             1
+Pirates of the Caribbean: Dead Man's Chest    1
+Iron Man 2                                    1
+Harry Potter and the Prisoner of Azkaban      1
+Mission: Impossible II                        1
+Sample distinct non-missing values:
+['The Dark Knight', 'Back to the Future Part II', 'The Godfather Part III', 'The Dark Knight Rises', 'Alien³', 'Jurassic Park III', 'Pulp Fiction', "Pirates of the Caribbean: Dead Man's Chest", 'Iron Man 2', 'Harry Potter and the Prisoner of Azkaban']
+
+Column: release_date
+Unique values including missing: 112
+Top 15 most frequent values:
+release_date
+2008-07-16    3
+1994-09-10    2
+1994-09-23    2
+1999-03-31    2
+1980-05-20    2
+1999-10-15    2
+1989-11-22    1
+1990-12-25    1
+2012-07-17    1
+1992-05-22    1
+2001-07-18    1
+2006-07-06    1
+2010-04-28    1
+2004-05-31    1
+2000-05-24    1
+Sample distinct non-missing values:
+['2008-07-16', '1989-11-22', '1990-12-25', '2012-07-17', '1992-05-22', '2001-07-18', '1994-09-10', '2006-07-06', '2010-04-28', '2004-05-31']
+
+Column: budget
+Unique values including missing: 60
+Top 15 most frequent values:
+budget
+150000000    9
+250000000    6
+200000000    6
+63000000     5
+185000000    4
+25000000     4
+30000000     4
+90000000     4
+40000000     3
+125000000    3
+70000000     3
+19000000     3
+28000000     3
+18000000     3
+110000000    3
+Sample distinct non-missing values:
+[185000000, 40000000, 54000000, 250000000, 50000000, 93000000, 8000000, 200000000, 130000000, 125000000]
+
+Column: revenue
+Unique values including missing: 112
+Top 15 most frequent values:
+revenue
+1008480529    3
+213928762     2
+28341469      2
+463517383     2
+538400000     2
+100853753     2
+332861197     1
+136766062     1
+1081041287    1
+159773545     1
+368780809     1
+1066179747    1
+623933331     1
+789804554     1
+546388108     1
+Sample distinct non-missing values:
+[1008480529, 332861197, 136766062, 1081041287, 159773545, 368780809, 213928762, 1066179747, 623933331, 789804554]
+
+Column: runtime
+Unique values including missing: 64
+Top 15 most frequent values:
+runtime
+124    5
+136    5
+152    4
+92     4
+142    4
+115    4
+108    3
+119    3
+161    3
+129    3
+169    3
+154    2
+151    2
+141    2
+116    2
+Sample distinct non-missing values:
+[152, 108, 162, 165, 114, 92, 154, 151, 124, 141]
+
+Column: vote_average
+Unique values including missing: 109
+Top 15 most frequent values:
+vote_average
+8.500    4
+8.480    2
+7.970    2
+8.734    2
+8.263    2
+7.818    2
+8.392    2
+8.437    2
+7.784    1
+7.413    1
+7.801    1
+6.391    1
+6.179    1
+7.393    1
+6.856    1
+Sample distinct non-missing values:
+[8.5, 7.784, 7.413, 7.801, 6.391, 6.179, 8.48, 7.393, 6.856, 8.014]
+
+Column: vote_count
+Unique values including missing: 113
+Top 15 most frequent values:
+vote_count
+37425    2
+31363    2
+31879    2
+29296    2
+19145    2
+33380    2
+14537    1
+7204     1
+25343    1
+6727     1
+8201     1
+17868    1
+23254    1
+24006    1
+7971     1
+Sample distinct non-missing values:
+[37425, 14537, 7204, 25343, 6727, 8201, 31363, 17868, 23254, 24006]
+
+Column: popularity
+Unique values including missing: 112
+Top 15 most frequent values:
+popularity
+52.5171    3
+29.9996    2
+45.4140    2
+38.6601    2
+14.0519    2
+36.9333    2
+9.8404     1
+13.6773    1
+20.6789    1
+7.9407     1
+0.4636     1
+17.1258    1
+21.1095    1
+27.1101    1
+7.8477     1
+Sample distinct non-missing values:
+[52.5171, 9.8404, 13.6773, 20.6789, 7.9407, 0.4636, 29.9996, 17.1258, 21.1095, 27.1101]
+
+Column: original_language
+Unique values including missing: 3
+original_language
+en    117
+ja      1
+it      1
+
+Column: status
+Unique values including missing: 1
+status
+Released    119
+
+Column: genres
+Unique values including missing: 66
+Top 15 most frequent values:
+genres
+Adventure, Action, Science Fiction    10
+Adventure, Fantasy                     8
+Adventure, Fantasy, Action             7
+Action, Thriller, Science Fiction      6
+Drama, Crime                           5
+Action, Thriller                       4
+Adventure, Action                      4
+Action, Thriller, Crime                3
+Adventure, Comedy, Science Fiction     3
+Adventure, Action, Thriller            3
+Action, Adventure, Science Fiction     3
+Action, Crime, Thriller                2
+Thriller, Crime, Comedy                2
+Action, Science Fiction                2
+Thriller, Crime                        2
+Sample distinct non-missing values:
+['Action, Thriller, Crime', 'Adventure, Comedy, Science Fiction', 'Crime, Drama, Thriller', 'Action, Crime, Thriller', 'Science Fiction, Action, Horror', 'Adventure, Thriller, Science Fiction, Action', 'Thriller, Crime, Comedy', 'Adventure, Fantasy, Action', 'Adventure, Action, Science Fiction', 'Adventure, Fantasy']
+
+Column: collection_id
+Unique values including missing: 33
+Top 15 most frequent values:
+collection_id
+NaN        19
+1241.0      8
+10.0        7
+263.0       5
+295.0       5
+87359.0     5
+8091.0      4
+1570.0      4
+10194.0     4
+86311.0     4
+2150.0      4
+2344.0      4
+84.0        4
+528.0       4
+264.0       3
+Sample distinct non-missing values:
+[263.0, 264.0, 230.0, 8091.0, 328.0, 295.0, 131292.0, 1241.0, 87359.0, 94032.0]
+
+Column: collection_name
+Unique values including missing: 33
+Top 15 most frequent values:
+collection_name
+NaN                                    19
+Harry Potter Collection                 8
+Star Wars Collection                    7
+The Dark Knight Collection              5
+Pirates of the Caribbean Collection     5
+Mission: Impossible Collection          5
+Alien Collection                        4
+Die Hard Collection                     4
+Toy Story Collection                    4
+The Avengers Collection                 4
+Shrek Collection                        4
+The Matrix Collection                   4
+Indiana Jones Collection                4
+The Terminator Collection               4
+Back to the Future Collection           3
+Sample distinct non-missing values:
+['The Dark Knight Collection', 'Back to the Future Collection', 'The Godfather Collection', 'Alien Collection', 'Jurassic Park Collection', 'Pirates of the Caribbean Collection', 'Iron Man Collection', 'Harry Potter Collection', 'Mission: Impossible Collection', 'The Lion King Collection']
+
+Cast
+
+Column: source_row
+Unique values including missing: 119
+Top 15 most frequent values:
+source_row
+22     177
+4      166
+74     145
+15     142
+1      139
+90     139
+94     139
+112    134
+35     121
+20     117
+32     112
+66     112
+3      111
+95     110
+120    110
+Sample distinct non-missing values:
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+Column: input_tmdb_id
+Unique values including missing: 113
+Top 15 most frequent values:
+input_tmdb_id
+155          278
+1892         177
+49026        166
+1891         158
+550          150
+13           145
+769          142
+tt0468569    139
+424          134
+1893         121
+278          118
+120          117
+24428        112
+240          112
+242          111
+Sample distinct non-missing values:
+['155', '165', '242', '49026', '8077', '331', '680', '58', '10138', '673']
+
+Column: movie_id
+Unique values including missing: 112
+Top 15 most frequent values:
+movie_id
+155      417
+1892     177
+49026    166
+1891     158
+550      150
+13       145
+769      142
+424      134
+1893     121
+278      118
+120      117
+24428    112
+240      112
+242      111
+298      110
+Sample distinct non-missing values:
+['155', '165', '242', '49026', '8077', '331', '680', '58', '10138', '673']
+
+Column: actor_id
+Unique values including missing: 6,190
+Top 15 most frequent values:
+actor_id
+2231     16
+4566     10
+11184    10
+64        9
+114       9
+1923      9
+84493     9
+1331      9
+3         9
+7907      9
+3895      8
+1896      8
+10980     8
+10989     8
+10990     8
+Sample distinct non-missing values:
+['3894', '1810', '6383', '3895', '1579', '64', '192', '53651', '57597', '2037']
+
+Column: actor_name
+Unique values including missing: 6,187
+Top 15 most frequent values:
+actor_name
+Samuel L. Jackson    16
+Alan Rickman         10
+Warwick Davis        10
+Gary Oldman           9
+Orlando Bloom         9
+Robbie Coltrane       9
+Mickie McGowan        9
+Hugo Weaving          9
+Harrison Ford         9
+John Ratzenberger     9
+Michael Caine         8
+Don Cheadle           8
+Daniel Radcliffe      8
+Rupert Grint          8
+Emma Watson           8
+Sample distinct non-missing values:
+['Christian Bale', 'Heath Ledger', 'Aaron Eckhart', 'Michael Caine', 'Maggie Gyllenhaal', 'Gary Oldman', 'Morgan Freeman', 'Monique Gabriela Curnen', 'Ron Dean', 'Cillian Murphy']
+
+Column: character
+Unique values including missing: 5,513
+Top 15 most frequent values:
+character
+Additional Voices (voice)                159
+Ewok                                      61
+Death Eater                               34
+Dancer                                    33
+(voice)                                   32
+Police Officer (uncredited)               26
+Extremis Soldier                          24
+Party Animal                              24
+Uruk-hai (uncredited)                     22
+Woman at Babylon Club                     22
+Senate Hearing Spectator (uncredited)     20
+Additional Voice (voice)                  18
+Party Guest (uncredited)                  17
+Ironette Dancer                           17
+Engineer                                  17
+Sample distinct non-missing values:
+['Bruce Wayne', 'Joker', 'Harvey Dent', 'Alfred', 'Rachel', 'Gordon', 'Lucius Fox', 'Ramirez', 'Wuertz', 'Scarecrow']
+
+Column: cast_order
+Unique values including missing: 177
+Top 15 most frequent values:
+cast_order
+0     119
+1     119
+2     119
+3     119
+4     119
+5     119
+6     119
+7     119
+8     119
+9     118
+10    118
+11    118
+12    118
+13    117
+14    117
+Sample distinct non-missing values:
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+Crew
+
+Column: source_row
+Unique values including missing: 119
+Top 15 most frequent values:
+source_row
+121    953
+56     739
+41     735
+97     660
+32     640
+30     614
+4      561
+122    552
+105    547
+124    513
+108    438
+103    432
+85     428
+84     376
+43     351
+Sample distinct non-missing values:
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+Column: input_tmdb_id
+Unique values including missing: 113
+Top 15 most frequent values:
+input_tmdb_id
+272       953
+299536    739
+27205     735
+99861     660
+24428     640
+299534    614
+49026     561
+49051     552
+280       547
+157336    513
+2503      438
+585       432
+1571      428
+550       376
+809       376
+Sample distinct non-missing values:
+['155', '165', '242', '49026', '8077', '331', '680', '58', '10138', '673']
+
+Column: movie_id
+Unique values including missing: 112
+Top 15 most frequent values:
+movie_id
+272       953
+299536    739
+27205     735
+99861     660
+24428     640
+299534    614
+49026     561
+49051     552
+280       547
+157336    513
+155       450
+2503      438
+585       432
+1571      428
+550       376
+Sample distinct non-missing values:
+['155', '165', '242', '49026', '8077', '331', '680', '58', '10138', '673']
+
+Column: person_id
+Unique values including missing: 16,161
+Top 15 most frequent values:
+person_id
+1          35
+900        34
+525        29
+670        22
+491        19
+8160       18
+1116937    18
+1706       18
+108        18
+2216       18
+947        17
+60261      17
+6170227    16
+7624       16
+1425978    16
+Sample distinct non-missing values:
+['3904', '3893', '561', '10949', '10951', '559', '527', '525', '15327', '556']
+
+Column: person_name
+Unique values including missing: 16,056
+Top 15 most frequent values:
+person_name
+George Lucas         35
+Christopher Boyes    34
+Christopher Nolan    29
+Ben Burtt            22
+John Williams        19
+Dennie Thorpe        18
+John Roesch          18
+Terry Rossio         18
+Peter Jackson        18
+Gary Rydstrom        18
+Hans Zimmer          17
+Stan Winston         17
+Paul Wurtzel         16
+Stan Lee             16
+Gary Summers         16
+Sample distinct non-missing values:
+['Lee Smith', 'David S. Goyer', 'John Papsidera', 'Michael Uslan', 'Benjamin Melniker', 'Wally Pfister', 'Jonathan Nolan', 'Christopher Nolan', 'Nathan Crowley', 'Emma Thomas']
+
+Column: department
+Unique values including missing: 11
+department
+Crew                 6460
+Visual Effects       3614
+Sound                3277
+Production           2969
+Art                  2671
+Costume & Make-Up    1994
+Camera               1588
+Directing            1046
+Lighting              976
+Editing               798
+Writing               564
+
+Column: job
+Unique values including missing: 690
+Top 15 most frequent values:
+job
+Stunts                        2304
+Animation                      625
+Makeup Artist                  404
+Stunt Double                   354
+Art Direction                  340
+Visual Effects Supervisor      339
+Executive Producer             333
+Musician                       324
+Visual Effects Coordinator     273
+Casting                        258
+Producer                       252
+Sound Effects Editor           252
+Visual Effects Producer        246
+Utility Stunts                 244
+Special Effects                228
+Sample distinct non-missing values:
+['Editor', 'Story', 'Casting', 'Executive Producer', 'Director of Photography', 'Screenplay', 'Production Design', 'Producer', 'Costume Design', 'Original Music Composer']
+
+Extraction Log
+
+Column: source_row
+Unique values including missing: 127
+Top 15 most frequent values:
+source_row
+1     1
+2     1
+3     1
+4     1
+5     1
+6     1
+7     1
+8     1
+9     1
+10    1
+11    1
+12    1
+13    1
+14    1
+15    1
+Sample distinct non-missing values:
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+Column: input_tmdb_id
+Unique values including missing: 120
+Top 15 most frequent values:
+input_tmdb_id
+155      2
+680      2
+278      2
+603      2
+1891     2
+NaN      2
+550      2
+165      1
+242      1
+49026    1
+8077     1
+331      1
+58       1
+10138    1
+673      1
+Sample distinct non-missing values:
+['155', '165', '242', '49026', '8077', '331', '680', '58', '10138', '673']
+
+Column: details_http_status
+Unique values including missing: 3
+details_http_status
+200.0    119
+404.0      7
+NaN        1
+
+Column: credits_http_status
+Unique values including missing: 3
+credits_http_status
+200.0    119
+404.0      7
+NaN        1
+
+Column: details_retrieved
+Unique values including missing: 2
+details_retrieved
+True     119
+False      8
+
+Column: credits_retrieved
+Unique values including missing: 2
+credits_retrieved
+True     119
+False      8
+
+Column: details_error
+Unique values including missing: 2
+details_error
+NaN                         126
+Skipped: missing TMDb ID      1
+
+Column: credits_error
+Unique values including missing: 2
+credits_error
+NaN                         126
+Skipped: missing TMDb ID      1
+
+===========================================================================
+5. MISSING VALUE ANALYSIS
+===========================================================================
+
+Movies - Missing values
+                   missing_count  missing_percentage data_type
+collection_name               19               15.97       str
+collection_id                 19               15.97   float64
+source_row                     0                0.00     int64
+input_tmdb_id                  0                0.00       str
+api_movie_id                   0                0.00     int64
+release_date                   0                0.00       str
+budget                         0                0.00     int64
+title                          0                0.00       str
+original_title                 0                0.00       str
+runtime                        0                0.00     int64
+revenue                        0                0.00     int64
+vote_average                   0                0.00   float64
+vote_count                     0                0.00     int64
+original_language              0                0.00       str
+popularity                     0                0.00   float64
+genres                         0                0.00       str
+status                         0                0.00       str
+
+Cast - Missing values
+               missing_count  missing_percentage data_type
+source_row                 0                 0.0     int64
+input_tmdb_id              0                 0.0       str
+movie_id                   0                 0.0    string
+actor_id                   0                 0.0    string
+actor_name                 0                 0.0       str
+character                  0                 0.0       str
+cast_order                 0                 0.0     int64
+
+Crew - Missing values
+               missing_count  missing_percentage data_type
+source_row                 0                 0.0     int64
+input_tmdb_id              0                 0.0       str
+movie_id                   0                 0.0    string
+person_id                  0                 0.0    string
+person_name                0                 0.0       str
+department                 0                 0.0       str
+job                        0                 0.0       str
+
+Extraction Log - Missing values
+                     missing_count  missing_percentage data_type
+details_error                  126               99.21       str
+credits_error                  126               99.21       str
+input_tmdb_id                    2                1.57       str
+details_http_status              1                0.79   float64
+credits_http_status              1                0.79   float64
+source_row                       0                0.00     int64
+credits_retrieved                0                0.00      bool
+details_retrieved                0                0.00      bool
+
+===========================================================================
+6. DUPLICATE ANALYSIS
+===========================================================================
+
+Movies
+Duplicate complete rows: 0
+
+Cast
+Duplicate complete rows: 0
+
+Crew
+Duplicate complete rows: 0
+
+Extraction Log
+Duplicate complete rows: 0
+
+===========================================================================
+7. NUMERICAL SUMMARY
+===========================================================================
+
+Movies
+               count          mean           std           min           25%           50%           75%           max
+source_row     119.0  6.393277e+01  3.707727e+01  1.000000e+00  3.250000e+01  6.300000e+01  9.550000e+01  1.270000e+02
+api_movie_id   119.0  1.885739e+04  5.547817e+04  1.100000e+01  2.760000e+02  6.740000e+02  2.501500e+03  3.015280e+05
+budget         119.0  1.066634e+08  8.241522e+07  1.200000e+06  3.117500e+07  9.000000e+07  1.500000e+08  3.790000e+08
+revenue        119.0  5.926368e+08  4.337385e+08  7.390108e+06  2.899826e+08  5.178142e+08  8.740284e+08  2.942650e+09
+runtime        119.0  1.312101e+02  2.505583e+01  8.100000e+01  1.150000e+02  1.290000e+02  1.445000e+02  2.020000e+02
+vote_average   119.0  7.640050e+00  7.228268e-01  5.753000e+00  7.279000e+00  7.784000e+00  8.209000e+00  8.734000e+00
+vote_count     119.0  1.836364e+04  8.780192e+03  4.137000e+03  1.126250e+04  1.646200e+04  2.340450e+04  4.195000e+04
+popularity     119.0  2.085809e+01  1.430229e+01  4.636000e-01  1.050965e+01  1.681970e+01  2.552815e+01  8.569900e+01
+collection_id  100.0  3.065328e+04  7.236850e+04  1.000000e+01  2.872500e+02  1.570000e+03  1.019400e+04  4.682220e+05
+
+Cast
+             count       mean        std  min   25%   50%   75%    max
+source_row  8407.0  62.125134  37.530951  1.0  30.0  61.0  95.0  127.0
+cast_order  8407.0  42.362198  31.887808  0.0  17.0  36.0  60.0  176.0
+
+Crew
+              count       mean        std  min   25%   50%    75%    max
+source_row  25957.0  65.217591  38.593566  1.0  32.0  62.0  101.0  127.0
+
+Extraction Log
+                     count        mean        std    min    25%    50%    75%    max
+source_row           127.0   64.000000  36.805797    1.0   32.5   64.0   95.5  127.0
+details_http_status  126.0  211.333333  46.915072  200.0  200.0  200.0  200.0  404.0
+credits_http_status  126.0  211.333333  46.915072  200.0  200.0  200.0  200.0  404.0
+
+===========================================================================
+8. ZERO AND NEGATIVE VALUE CHECKS
+===========================================================================
+
+Movies
+source_row: Zeros = 0, Negative values = 0
+api_movie_id: Zeros = 0, Negative values = 0
+budget: Zeros = 0, Negative values = 0
+revenue: Zeros = 0, Negative values = 0
+runtime: Zeros = 0, Negative values = 0
+vote_average: Zeros = 0, Negative values = 0
+vote_count: Zeros = 0, Negative values = 0
+popularity: Zeros = 0, Negative values = 0
+collection_id: Zeros = 0, Negative values = 0
+
+Cast
+source_row: Zeros = 0, Negative values = 0
+cast_order: Zeros = 119, Negative values = 0
+
+Crew
+source_row: Zeros = 0, Negative values = 0
+
+Extraction Log
+source_row: Zeros = 0, Negative values = 0
+details_http_status: Zeros = 0, Negative values = 0
+credits_http_status: Zeros = 0, Negative values = 0
+
+===========================================================================
+9. EXTRACTION LOG ANALYSIS
+===========================================================================
+Total extraction log records: 127
+
+details_http_status frequency:
+details_http_status
+200.0    119
+404.0      7
+NaN        1
+
+credits_http_status frequency:
+credits_http_status
+200.0    119
+404.0      7
+NaN        1
+
+details_error frequency:
+details_error
+NaN                         126
+Skipped: missing TMDb ID      1
+
+credits_error frequency:
+credits_error
+NaN                         126
+Skipped: missing TMDb ID      1
+
+First 20 extraction log records:
+ source_row input_tmdb_id  details_http_status  credits_http_status  details_retrieved  credits_retrieved details_error credits_error
+          1           155                200.0                200.0               True               True           NaN           NaN
+          2           165                200.0                200.0               True               True           NaN           NaN
+          3           242                200.0                200.0               True               True           NaN           NaN
+          4         49026                200.0                200.0               True               True           NaN           NaN
+          5          8077                200.0                200.0               True               True           NaN           NaN
+          6           331                200.0                200.0               True               True           NaN           NaN
+          7           680                200.0                200.0               True               True           NaN           NaN
+          8            58                200.0                200.0               True               True           NaN           NaN
+          9         10138                200.0                200.0               True               True           NaN           NaN
+         10           673                200.0                200.0               True               True           NaN           NaN
+         11           955                200.0                200.0               True               True           NaN           NaN
+         12          8587                200.0                200.0               True               True           NaN           NaN
+         13           674                200.0                200.0               True               True           NaN           NaN
+         14          1573                200.0                200.0               True               True           NaN           NaN
+         15           769                200.0                200.0               True               True           NaN           NaN
+         16           105                200.0                200.0               True               True           NaN           NaN
+         17       8471293                404.0                404.0              False              False           NaN           NaN
+         18           121                200.0                200.0               True               True           NaN           NaN
+         19        122917                200.0                200.0               True               True           NaN           NaN
+         20           120                200.0                200.0               True               True           NaN           NaN
+
+===========================================================================
+10. IMPORTANT MOVIE INFORMATION
+===========================================================================
+                                                 title                                         original_title release_date    budget    revenue  runtime  vote_average  vote_count  popularity original_language   status
+                                       The Dark Knight                                        The Dark Knight   2008-07-16 185000000 1008480529      152         8.500       37425     52.5171                en Released
+                            Back to the Future Part II                             Back to the Future Part II   1989-11-22  40000000  332861197      108         7.784       14537      9.8404                en Released
+                                The Godfather Part III                                 The Godfather Part III   1990-12-25  54000000  136766062      162         7.413        7204     13.6773                en Released
+                                 The Dark Knight Rises                                  The Dark Knight Rises   2012-07-17 250000000 1081041287      165         7.801       25343     20.6789                en Released
+                                                Alien³                                                 Alien³   1992-05-22  50000000  159773545      114         6.391        6727      7.9407                en Released
+                                     Jurassic Park III                                      Jurassic Park III   2001-07-18  93000000  368780809       92         6.179        8201      0.4636                en Released
+                                          Pulp Fiction                                           Pulp Fiction   1994-09-10   8000000  213928762      154         8.480       31363     29.9996                en Released
+            Pirates of the Caribbean: Dead Man's Chest             Pirates of the Caribbean: Dead Man's Chest   2006-07-06 200000000 1066179747      151         7.393       17868     17.1258                en Released
+                                            Iron Man 2                                             Iron Man 2   2010-04-28 200000000  623933331      124         6.856       23254     21.1095                en Released
+              Harry Potter and the Prisoner of Azkaban               Harry Potter and the Prisoner of Azkaban   2004-05-31 130000000  789804554      141         8.014       24006     27.1101                en Released
+                                Mission: Impossible II                                 Mission: Impossible II   2000-05-24 125000000  546388108      123         6.140        7971      7.8477                en Released
+                                         The Lion King                                          The Lion King   1994-06-15  45000000  763455561       89         8.250       20427     21.2537                en Released
+                   Harry Potter and the Goblet of Fire                    Harry Potter and the Goblet of Fire   2005-11-16 150000000  895921036      157         7.804       22958     31.3937                en Released
+                                            Die Hard 2                                             Die Hard 2   1990-07-03  70000000  240031094      124         6.972        6723      8.8755                en Released
+                                            GoodFellas                                             GoodFellas   1990-09-12  25000000   47072327      145         8.452       15053     20.3111                en Released
+                                    Back to the Future                                     Back to the Future   1985-07-03  19000000  391546852      116         8.332       22791     25.1565                en Released
+                 The Lord of the Rings: The Two Towers                  The Lord of the Rings: The Two Towers   2002-12-18  79000000  926287400      179         8.400       25012     28.7205                en Released
+             The Hobbit: The Battle of the Five Armies              The Hobbit: The Battle of the Five Armies   2014-12-10 250000000  956019788      144         7.342       16006     22.4242                en Released
+     The Lord of the Rings: The Fellowship of the Ring      The Lord of the Rings: The Fellowship of the Ring   2001-12-18  93000000  871368364      179         8.500       28905     39.9859                en Released
+                                                Aliens                                                 Aliens   1986-07-18  18500000  183316455      137         7.970       11398     14.5196                en Released
+                                    Return of the Jedi                                     Return of the Jedi   1983-05-25  32350000  572700000      132         7.911       17573      9.8817                en Released
+Pirates of the Caribbean: The Curse of the Black Pearl Pirates of the Caribbean: The Curse of the Black Pearl   2003-07-09 140000000  655011224      143         7.838       23121     21.7203                en Released
+                                     Kill Bill: Vol. 1                                      Kill Bill: Vol. 1   2003-10-10  30000000  180906076      111         7.970       19750     14.6668                en Released
+                                             Star Wars                                              Star Wars   1977-05-25  11000000  775398007      121         8.206       23191     29.2803                en Released
+                              The Shawshank Redemption                               The Shawshank Redemption   1994-09-23  25000000   28341469      142         8.734       31879     45.4140                en Released
+                                              Iron Man                                               Iron Man   2008-04-30 140000000  585174222      126         7.668       29216     27.9904                en Released
+                                           Toy Story 2                                            Toy Story 2   1999-10-30  90000000  497375404       92         7.623       15599     18.1554                en Released
+                                     Avengers: Endgame                                      Avengers: Endgame   2019-04-24 356000000 2942649778      181         8.200       29432     85.6990                en Released
+                            Die Hard: With a Vengeance                             Die Hard: With a Vengeance   1995-05-19  90000000  366101666      128         7.289        6968     10.4212                en Released
+                                          The Avengers                                           The Avengers   2012-04-25 220000000 1518815515      143         8.085       40407     41.3189                en Released
+
+===========================================================================
+11. COLLECTION INFORMATION
+===========================================================================
+Collection column not found.
+
+===========================================================================
+12. CAST AND CREW OVERVIEW
+===========================================================================
+Total cast records: 8,407
+Total crew records: 25,957
+
+Cast columns: ['source_row', 'input_tmdb_id', 'movie_id', 'actor_id', 'actor_name', 'character', 'cast_order']
+
+Crew columns: ['source_row', 'input_tmdb_id', 'movie_id', 'person_id', 'person_name', 'department', 'job']
+
+Crew - department frequencies:
+department
+Crew                 6460
+Visual Effects       3614
+Sound                3277
+Production           2969
+Art                  2671
+Costume & Make-Up    1994
+Camera               1588
+Directing            1046
+Lighting              976
+Editing               798
+Writing               564
+
+Crew - job frequencies:
+job
+Stunts                        2304
+Animation                      625
+Makeup Artist                  404
+Stunt Double                   354
+Art Direction                  340
+Visual Effects Supervisor      339
+Executive Producer             333
+Musician                       324
+Visual Effects Coordinator     273
+Casting                        258
+Producer                       252
+Sound Effects Editor           252
+Visual Effects Producer        246
+Utility Stunts                 244
+Special Effects                228
+Sound Re-Recording Mixer       224
+Electrician                    213
+Hairstylist                    204
+Production Assistant           204
+Special Effects Technician     198
+Second Assistant Director      186
+Software Engineer              182
+Screenplay                     177
+Assistant Editor               177
+Editor                         169
+Set Dresser                    168
+Lighting Technician            166
+Modeling                       163
+Stunt Coordinator              160
+Set Designer                   158
+
+===========================================================================
+13. REPORT COMPLETION
+===========================================================================
+Report generated: 2026-11-19 09:23:09.503043
+No records were deleted or modified during this profiling exercise.
+This report is for initial diagnosis, not final data cleaning.
